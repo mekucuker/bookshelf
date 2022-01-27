@@ -1,0 +1,24 @@
+HELP.md
+
+### Java ###
+*.class
+
+### Gradle ###
+.gradle/
+build/
+
+### IntelliJ IDEA ###
+.idea/
+out/
+*.iml
+*.iws
+*.ipr
+
+### Coverage ###
+.css/
+.img/
+
+### Package Files ###
+*.jar
+*.war
+*.ear

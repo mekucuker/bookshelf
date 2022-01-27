@@ -1,0 +1,41 @@
+plugins {
+	id 'org.springframework.boot' version '3.0.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'tr.com.mek'
+version = 'v0.0.1'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+ext {
+	setProperty("lombokVersion", "1.18.22")
+}
+
+dependencies {
+	// Spring Boot
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// Lombok
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+	// JUnit 5
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+
+	// Equals Verifier
+	testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.8.2'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
