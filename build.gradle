@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '3.0.0-SNAPSHOT'
+	id 'org.springframework.boot' version '2.6.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
@@ -10,30 +10,40 @@ sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
-	maven { url 'https://repo.spring.io/milestone' }
-	maven { url 'https://repo.spring.io/snapshot' }
 }
 
 ext {
 	setProperty("lombokVersion", "1.18.22")
+	setProperty("testcontainersVersion", "1.16.3")
 }
 
 dependencies {
 	// Spring Boot
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// Lombok
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
+	// Mapper
+	implementation 'org.modelmapper:modelmapper:3.0.0'
+
 	// JUnit 5
 	testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 
+	// Test Containers
+	testImplementation "org.testcontainers:testcontainers:${testcontainersVersion}"
+	testImplementation "org.testcontainers:junit-jupiter:${testcontainersVersion}"
+
+	// OpenAPI
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.5'
+
 	// Equals Verifier
 	testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.8.2'
-
 }
 
 tasks.named('test') {
