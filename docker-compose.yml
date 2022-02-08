@@ -11,6 +11,11 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=f72d401a
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo localhost:27017/bookshelf --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
   mongo-express:
     image: mongo-express
     container_name: mongo-express
@@ -21,6 +26,17 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=f72d401a
       - ME_CONFIG_MONGODB_SERVER=mongodb
     restart: always
+
+  bookshelf:
+    image: bookshelf
+    container_name: bookshelf
+    ports:
+    - 8080:8080
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongodb
+    depends_on:
+      mongodb:
+        condition: service_healthy
 
 volumes:
   mongodb:
