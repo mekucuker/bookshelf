@@ -1,10 +1,10 @@
 package tr.com.mek.bookshelf.integration.object;
 
-import tr.com.mek.bookshelf.api.dto.ItemCreationRequest;
-import tr.com.mek.bookshelf.api.dto.ItemUpdateRequest;
 import tr.com.mek.bookshelf.domain.factory.ItemType;
+import tr.com.mek.bookshelf.dto.ItemCreationRequest;
+import tr.com.mek.bookshelf.dto.ItemUpdateRequest;
 
-public class TestRequest {
+public class TestItemRequest {
 
     static final ItemType type = ItemType.BOOK;
     static final String name = "Test Item";

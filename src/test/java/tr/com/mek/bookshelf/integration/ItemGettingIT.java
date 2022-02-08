@@ -11,11 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import tr.com.mek.bookshelf.api.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.domain.model.item.Item;
+import tr.com.mek.bookshelf.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.integration.initializer.DatabaseInitializer;
-import tr.com.mek.bookshelf.integration.object.TestRequest;
+import tr.com.mek.bookshelf.integration.object.TestItemRequest;
 import tr.com.mek.bookshelf.repository.ItemRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -56,7 +56,7 @@ public class ItemGettingIT {
     }
 
     private String postTestItem() throws Exception {
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
         String response = mockMvc.perform(post("/items")
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(request)))

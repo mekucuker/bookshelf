@@ -1,11 +1,11 @@
-package tr.com.mek.bookshelf.api;
+package tr.com.mek.bookshelf.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import tr.com.mek.bookshelf.api.dto.ErrorResponse;
+import tr.com.mek.bookshelf.dto.ErrorResponse;
 import tr.com.mek.bookshelf.exception.BookshelfException;
 import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.exception.ItemNotFoundException;

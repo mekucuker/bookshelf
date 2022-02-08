@@ -1,4 +1,11 @@
+server:
+  servlet:
+    context-path: /bookshelf
+
 spring:
+  mvc:
+    servlet:
+      path: /api/v1
   data:
     mongodb:
       authentication-database: admin

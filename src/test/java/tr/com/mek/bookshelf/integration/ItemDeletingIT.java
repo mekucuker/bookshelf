@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import tr.com.mek.bookshelf.api.dto.ItemCreationRequest;
+import tr.com.mek.bookshelf.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.integration.initializer.DatabaseInitializer;
 import tr.com.mek.bookshelf.repository.ItemRepository;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static tr.com.mek.bookshelf.integration.object.TestRequest.getTestItemCreationRequest;
+import static tr.com.mek.bookshelf.integration.object.TestItemRequest.getTestItemCreationRequest;
 
 @SpringBootTest
 @AutoConfigureMockMvc

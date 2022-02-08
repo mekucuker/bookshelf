@@ -13,11 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import tr.com.mek.bookshelf.api.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.domain.model.item.Item;
+import tr.com.mek.bookshelf.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.integration.initializer.DatabaseInitializer;
-import tr.com.mek.bookshelf.integration.object.TestRequest;
+import tr.com.mek.bookshelf.integration.object.TestItemRequest;
 import tr.com.mek.bookshelf.repository.ItemRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,7 +56,7 @@ public class ItemPostingIT {
     @DisplayName("Creating Item Successfully")
     void createItemSuccessfully() throws Exception {
         // given
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
 
         // when
         ResultActions result = mockMvc.perform(post("/items")
@@ -82,7 +82,7 @@ public class ItemPostingIT {
     @DisplayName("Throwing Exception While Creating Object If Item Type is Null")
     void throwExceptionIfItemTypeIsNull() throws Exception {
         // given
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
         request.setItemType(null);
 
         // when
@@ -101,7 +101,7 @@ public class ItemPostingIT {
     @DisplayName("Throwing Exception While Creating Object If Item Name is Null")
     void throwExceptionIfNameIsNull() throws Exception {
         // given
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
         request.setName(null);
 
         // when
@@ -121,7 +121,7 @@ public class ItemPostingIT {
     @DisplayName("Throwing Exception While Creating Object If Name Size is Not Appropriate")
     void throwExceptionIfNameSizeIsTooShortOrTooLong(String name) throws Exception {
         // given
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
         request.setName(name);
 
         // when
@@ -140,7 +140,7 @@ public class ItemPostingIT {
     @DisplayName("Throwing Exception While Creating Object If Author Name Size is Too Long")
     void throwExceptionIfAuthorNameSizeIsTooLong() throws Exception {
         // given
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
         request.setAuthor(testNameFiftyOneChars); // author name with fifty one characters
 
         // when
@@ -159,7 +159,7 @@ public class ItemPostingIT {
     @DisplayName("Throwing Exception While Creating Object If Publisher Name Size is Too Long")
     void throwExceptionIfPublisherNameSizeIsTooLong() throws Exception {
         // given
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
         request.setPublisher(testNameHundredAndOneChars); // publisher name with hundred and one characters
 
         // when
@@ -178,7 +178,7 @@ public class ItemPostingIT {
     @DisplayName("Throwing Exception While Creating Object If Publication Year is Not Appropriate")
     void throwExceptionIfPublicationYearIsEarlierThanFirstPublishedBook() throws Exception {
         // given
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
         request.setPublicationYear(867); // an invalid publication year
 
         // when
@@ -198,7 +198,7 @@ public class ItemPostingIT {
     @DisplayName("Throwing Exception While Creating Object If Issue Value is Negative")
     void throwExceptionIfIssueValueIsNegative() throws Exception {
         // given
-        ItemCreationRequest request = TestRequest.getTestItemCreationRequest();
+        ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
         request.setIssue(-1);
 
         // when

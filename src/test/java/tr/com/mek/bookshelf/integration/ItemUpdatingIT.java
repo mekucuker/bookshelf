@@ -11,12 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import tr.com.mek.bookshelf.api.dto.ItemCreationRequest;
-import tr.com.mek.bookshelf.api.dto.ItemUpdateRequest;
 import tr.com.mek.bookshelf.domain.factory.ItemType;
+import tr.com.mek.bookshelf.dto.ItemCreationRequest;
+import tr.com.mek.bookshelf.dto.ItemUpdateRequest;
 import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.integration.initializer.DatabaseInitializer;
-import tr.com.mek.bookshelf.integration.object.TestRequest;
+import tr.com.mek.bookshelf.integration.object.TestItemRequest;
 import tr.com.mek.bookshelf.repository.ItemRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static tr.com.mek.bookshelf.integration.object.TestRequest.getTestItemCreationRequest;
+import static tr.com.mek.bookshelf.integration.object.TestItemRequest.getTestItemCreationRequest;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -83,7 +83,7 @@ public class ItemUpdatingIT {
     @DisplayName("Updating Book Successfully")
     void updateBookSuccessfully() throws Exception {
         // given
-        ItemUpdateRequest request = TestRequest.getTestItemUpdateRequest();
+        ItemUpdateRequest request = TestItemRequest.getTestItemUpdateRequest();
 
         // when
         ResultActions result = mockMvc.perform(put("/items/{id}", testBookId)
@@ -103,7 +103,7 @@ public class ItemUpdatingIT {
     @DisplayName("Updating Magazine Successfully")
     void updateMagazineSuccessfully() throws Exception {
         // given
-        ItemUpdateRequest request = TestRequest.getTestItemUpdateRequest();
+        ItemUpdateRequest request = TestItemRequest.getTestItemUpdateRequest();
 
         // when
         ResultActions result = mockMvc.perform(put("/items/" + testMagazineId)
@@ -124,7 +124,7 @@ public class ItemUpdatingIT {
     @DisplayName("Throwing Exception While Updating Object If Author Name Size is Too Long")
     void throwExceptionIfAuthorNameSizeIsTooLong() throws Exception {
         // given
-        ItemUpdateRequest request = TestRequest.getTestItemUpdateRequest();
+        ItemUpdateRequest request = TestItemRequest.getTestItemUpdateRequest();
         request.setAuthor(testNameFiftyOneChars); // author name with fifty one characters
 
         // when
@@ -143,7 +143,7 @@ public class ItemUpdatingIT {
     @DisplayName("Throwing Exception While Updating Object If Publisher Name Size is Too Long")
     void throwExceptionIfPublisherNameSizeIsTooLong() throws Exception {
         // given
-        ItemUpdateRequest request = TestRequest.getTestItemUpdateRequest();
+        ItemUpdateRequest request = TestItemRequest.getTestItemUpdateRequest();
         request.setPublisher(testNameHundredAndOneChars); // publisher name with hundred and one characters
 
         // when
@@ -162,7 +162,7 @@ public class ItemUpdatingIT {
     @DisplayName("Throwing Exception While Updating Object If Publication Year is Not Appropriate")
     void throwExceptionIfPublicationYearIsEarlierThanFirstPublishedBook() throws Exception {
         // given
-        ItemUpdateRequest request = TestRequest.getTestItemUpdateRequest();
+        ItemUpdateRequest request = TestItemRequest.getTestItemUpdateRequest();
         request.setPublicationYear(867); // an invalid publication year
 
         // when
@@ -182,7 +182,7 @@ public class ItemUpdatingIT {
     @DisplayName("Throwing Exception While Updating Object If Issue Value is Negative")
     void throwExceptionIfIssueValueIsNegative() throws Exception {
         // given
-        ItemUpdateRequest request = TestRequest.getTestItemUpdateRequest();
+        ItemUpdateRequest request = TestItemRequest.getTestItemUpdateRequest();
         request.setIssue(-1);
 
         // when

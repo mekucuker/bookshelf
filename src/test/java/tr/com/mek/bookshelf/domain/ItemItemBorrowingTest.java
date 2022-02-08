@@ -17,21 +17,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static tr.com.mek.bookshelf.domain.object.TestPerson.getTestPerson;
 
-@DisplayName("Item Lending Test Cases")
-public class ItemLendingTest {
+@DisplayName("Item Borrowing Test Cases")
+public class ItemItemBorrowingTest {
 
     private final String testItemName = "Test Item Name";
 
     @ParameterizedTest
     @EnumSource(ItemType.class)
-    @DisplayName("Lending An Item To The Lender Successfully")
-    void lendItemToLenderSuccessfully(ItemType itemType) throws Exception {
+    @DisplayName("Borrowing An Item From The Lender Successfully")
+    void borrowItemFromLenderSuccessfully(ItemType itemType) throws Exception {
         // given
         Item item = ItemFactory.create(itemType, testItemName);
         Person person = getTestPerson();
 
         // when
-        item.lend(person);
+        item.borrow(person);
 
         // then
         assertEquals(testItemName, item.getName());
@@ -39,8 +39,25 @@ public class ItemLendingTest {
         assertEquals(person.getMobilePhone(), item.getPerson().getMobilePhone());
         assertEquals(person.getCity(), item.getPerson().getCity());
         assertEquals(LocalDate.now(), item.getProcessingDate());
+        assertEquals(true, item.isBorrowed());
+        assertEquals(false, item.isLent());
+    }
+
+    @ParameterizedTest
+    @EnumSource(ItemType.class)
+    @DisplayName("Undo Borrowing Operation of An Item Successfully")
+    void undoBorrowingOfItemSuccessfully(ItemType itemType) throws Exception {
+        // given
+        Item item = ItemFactory.create(itemType, testItemName);
+        Person person = getTestPerson();
+        item.borrow(person);
+
+        // when
+        item.undoBorrowing();
+
+        // then
+        assertEquals(null, item.getPerson());
         assertEquals(false, item.isBorrowed());
-        assertEquals(true, item.isLoaned());
     }
 
     /*
@@ -49,7 +66,7 @@ public class ItemLendingTest {
 
     @ParameterizedTest
     @EnumSource(ItemType.class)
-    @DisplayName("Throwing Exception If The Lender is Null While Lending An Item")
+    @DisplayName("Throwing Exception If The Lender is Null While Borrowing An Item")
     void throwExceptionIfLenderIsNull(ItemType itemType) {
         // given
         Item item = ItemFactory.create(itemType, testItemName);
@@ -57,7 +74,7 @@ public class ItemLendingTest {
         // when
         BookshelfException thrown = assertThrows(
                 ModelArgumentNotValidException.class,
-                () -> item.lend(null)
+                () -> item.borrow(null)
         );
 
         // then

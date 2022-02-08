@@ -21,7 +21,7 @@ public abstract class Item {
     private Person person;
     private LocalDate processingDate;
     private boolean borrowed;
-    private boolean loaned;
+    private boolean lent;
 
     /**
      * This method is used to borrow the item from someone.
@@ -42,7 +42,7 @@ public abstract class Item {
      */
     public void lend(Person person) throws ModelArgumentNotValidException {
         performTheProcess(person);
-        this.loaned = true;
+        this.lent = true;
     }
 
     private void performTheProcess(Person person) throws ModelArgumentNotValidException {
@@ -51,5 +51,21 @@ public abstract class Item {
 
         this.processingDate = LocalDate.now();
         this.person = person;
+    }
+
+    /**
+     * This method is used to undo the borrowing operation done before.
+     */
+    public void undoBorrowing() {
+        this.person = null;
+        this.borrowed = false;
+    }
+
+    /**
+     * This method is used to undo the lending operation done before.
+     */
+    public void undoLending() {
+        this.person = null;
+        this.lent = false;
     }
 }

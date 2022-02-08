@@ -1,14 +1,14 @@
 package tr.com.mek.bookshelf.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import tr.com.mek.bookshelf.api.dto.ItemCreationRequest;
-import tr.com.mek.bookshelf.api.dto.ItemUpdateRequest;
 import tr.com.mek.bookshelf.domain.factory.ItemFactory;
 import tr.com.mek.bookshelf.domain.factory.ItemType;
 import tr.com.mek.bookshelf.domain.model.item.Item;
 import tr.com.mek.bookshelf.domain.model.item.value.PublicationYear;
+import tr.com.mek.bookshelf.dto.ItemCreationRequest;
+import tr.com.mek.bookshelf.dto.ItemUpdateRequest;
 import tr.com.mek.bookshelf.exception.ItemNotFoundException;
 import tr.com.mek.bookshelf.exception.ModelArgumentNotValidException;
 import tr.com.mek.bookshelf.repository.ItemRepository;
@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@AllArgsConstructor
-public class ItemCrudOperation {
+@RequiredArgsConstructor
+public class CrudOperation {
 
     private final ModelMapper modelMapper;
     private final ItemRepository itemRepository;

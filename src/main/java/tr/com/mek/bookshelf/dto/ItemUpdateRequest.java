@@ -1,23 +1,17 @@
-package tr.com.mek.bookshelf.api.dto;
+package tr.com.mek.bookshelf.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import tr.com.mek.bookshelf.domain.factory.ItemType;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class ItemCreationRequest {
-
-    @NotNull(message = "Item type may not be null.")
-    private ItemType itemType;
-
-    @NotBlank(message = "Name may not be blank.")
-    @Size(min = 3, max = 50, message = "Name size may be between 3 and 50 characters.")
-    private String name;
+public class ItemUpdateRequest {
 
     @Size(max = 50, message = "Author name size may be up to 50 characters.")
     private String author;

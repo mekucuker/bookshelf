@@ -1,4 +1,4 @@
-package tr.com.mek.bookshelf.api.dto;
+package tr.com.mek.bookshelf.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
