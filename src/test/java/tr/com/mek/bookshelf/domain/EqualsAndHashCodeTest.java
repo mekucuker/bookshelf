@@ -11,7 +11,7 @@ public class EqualsAndHashCodeTest {
 
     @Test
     @DisplayName("Testing Equals and Hash Code Methods of All Model Classes")
-    public void testEqualsAndHashCodeForAllDomainClasses() {
+    void testEqualsAndHashCodeForAllDomainClasses() {
         EqualsVerifier.simple()
                 .forPackage(modelPackage, true)
                 .verify();
