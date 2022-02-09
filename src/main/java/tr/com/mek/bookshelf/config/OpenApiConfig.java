@@ -35,18 +35,11 @@ public class OpenApiConfig {
     }
 
     private Info getInfo() {
-        String applicationName = getApplicationNameWithCamelCase();
+        String applicationName = buildProperties.getName().toUpperCase();
         String applicationVersion = buildProperties.getVersion();
         return new Info()
                 .title(applicationName)
                 .version(applicationVersion)
-                .description("RestAPI Documentation of " + applicationName + " Backend Application");
-    }
-
-    private String getApplicationNameWithCamelCase() {
-        String applicationName = buildProperties.getName();
-        String camelCaseApplicationName = applicationName.substring(0,1).toUpperCase()
-                + applicationName.substring(1);
-        return camelCaseApplicationName;
+                .description("RestAPI Documentation");
     }
 }
