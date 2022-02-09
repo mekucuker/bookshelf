@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  bookshelf:
+    image: bookshelf
+    container_name: bookshelf
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongodb
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+networks:
+  default:
+    name: bookshelf-network

@@ -27,20 +27,9 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongodb
     restart: always
 
-  bookshelf:
-    image: bookshelf
-    container_name: bookshelf
-    ports:
-    - 8080:8080
-    environment:
-      - SPRING_DATA_MONGODB_HOST=mongodb
-    depends_on:
-      mongodb:
-        condition: service_healthy
-
 volumes:
   mongodb:
 
 networks:
   default:
-    name: mongo-network
+    name: bookshelf-network
