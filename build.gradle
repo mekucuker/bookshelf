@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id "org.sonarqube" version "3.3"
 	id 'java'
 }
 
@@ -10,6 +11,14 @@ sourceCompatibility = '17'
 
 springBoot {
 	buildInfo()
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "mekucuker_bookshelf"
+		property "sonar.organization", "mek"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
 }
 
 repositories {
