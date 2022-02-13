@@ -1,11 +1,11 @@
 package tr.com.mek.bookshelf.domain.model.vo;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value(staticConstructor = "of")
 public class Person {
 
-    private final String name;
-    private String mobilePhone;
-    private String city;
+    String name;
+    String mobilePhone;
+    String city;
 }

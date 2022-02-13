@@ -9,9 +9,6 @@ public class TestPerson {
     private static final String testMobilePhone = "Test Mobile Phone";
 
     public static Person getTestPerson() {
-        Person person = new Person(testPersonName);
-        person.setCity(testCity);
-        person.setMobilePhone(testMobilePhone);
-        return person;
+        return Person.of(testPersonName, testMobilePhone, testCity);
     }
 }

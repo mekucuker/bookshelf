@@ -1,7 +1,6 @@
 package tr.com.mek.bookshelf.service;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import tr.com.mek.bookshelf.domain.model.Item;
 import tr.com.mek.bookshelf.domain.model.vo.Person;
@@ -14,14 +13,12 @@ import tr.com.mek.bookshelf.repository.ItemRepository;
 @RequiredArgsConstructor
 public class ItemLending implements LoanOperation {
 
-    private final ModelMapper modelMapper;
     private final CrudOperation crudOperation;
     private final ItemRepository itemRepository;
 
     @Override
     public Item doOperation(String itemId, LoanRequest request) throws ItemNotFoundException, ModelArgumentNotValidException {
-        Person person = new Person(request.getName());
-        modelMapper.map(request, person);
+        Person person = generatePerson(request);
 
         Item item = crudOperation.getItemById(itemId);
         item.lend(person);

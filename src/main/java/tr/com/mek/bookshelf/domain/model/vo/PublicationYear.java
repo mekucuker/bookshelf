@@ -1,19 +1,17 @@
 package tr.com.mek.bookshelf.domain.model.vo;
 
 import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import tr.com.mek.bookshelf.exception.ModelArgumentNotValidException;
 
 import java.time.LocalDate;
 
-@Getter
-@EqualsAndHashCode
+@Value
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class PublicationYear {
 
-    private final Integer value;
+    Integer value;
 
     /**
      * Creates a validated value object for publication year.
