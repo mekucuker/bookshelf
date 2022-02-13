@@ -5,8 +5,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import tr.com.mek.bookshelf.domain.factory.ItemFactory;
 import tr.com.mek.bookshelf.domain.factory.ItemType;
-import tr.com.mek.bookshelf.domain.model.item.Item;
-import tr.com.mek.bookshelf.domain.model.person.Person;
+import tr.com.mek.bookshelf.domain.model.Item;
+import tr.com.mek.bookshelf.domain.model.vo.Person;
 import tr.com.mek.bookshelf.exception.BookshelfException;
 import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.exception.ModelArgumentNotValidException;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static tr.com.mek.bookshelf.domain.object.TestPerson.getTestPerson;
 
 @DisplayName("Item Lending Test Cases")
-public class ItemItemLendingTest {
+public class ItemLendingTest {
 
     private final String testItemName = "Test Item Name";
 

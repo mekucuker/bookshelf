@@ -2,9 +2,9 @@ package tr.com.mek.bookshelf.integration.object;
 
 import tr.com.mek.bookshelf.domain.factory.ItemFactory;
 import tr.com.mek.bookshelf.domain.factory.ItemType;
-import tr.com.mek.bookshelf.domain.model.item.Book;
-import tr.com.mek.bookshelf.domain.model.item.Item;
-import tr.com.mek.bookshelf.domain.model.item.value.PublicationYear;
+import tr.com.mek.bookshelf.domain.model.Book;
+import tr.com.mek.bookshelf.domain.model.Item;
+import tr.com.mek.bookshelf.domain.model.vo.PublicationYear;
 import tr.com.mek.bookshelf.exception.ModelArgumentNotValidException;
 
 public class TestItem {

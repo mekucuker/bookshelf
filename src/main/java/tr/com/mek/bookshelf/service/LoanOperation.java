@@ -1,6 +1,6 @@
 package tr.com.mek.bookshelf.service;
 
-import tr.com.mek.bookshelf.domain.model.item.Item;
+import tr.com.mek.bookshelf.domain.model.Item;
 import tr.com.mek.bookshelf.dto.LoanRequest;
 import tr.com.mek.bookshelf.exception.ItemNotFoundException;
 import tr.com.mek.bookshelf.exception.ModelArgumentNotValidException;

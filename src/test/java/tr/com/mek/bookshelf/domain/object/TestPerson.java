@@ -1,6 +1,6 @@
 package tr.com.mek.bookshelf.domain.object;
 
-import tr.com.mek.bookshelf.domain.model.person.Person;
+import tr.com.mek.bookshelf.domain.model.vo.Person;
 
 public class TestPerson {
 

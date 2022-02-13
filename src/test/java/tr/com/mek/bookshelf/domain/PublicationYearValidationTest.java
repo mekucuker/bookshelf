@@ -3,7 +3,7 @@ package tr.com.mek.bookshelf.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import tr.com.mek.bookshelf.domain.model.item.value.PublicationYear;
+import tr.com.mek.bookshelf.domain.model.vo.PublicationYear;
 import tr.com.mek.bookshelf.exception.BookshelfException;
 import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.exception.ModelArgumentNotValidException;

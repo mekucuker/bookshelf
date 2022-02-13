@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import tr.com.mek.bookshelf.domain.model.item.Item;
+import tr.com.mek.bookshelf.domain.model.Item;
 import tr.com.mek.bookshelf.dto.ErrorResponse;
 import tr.com.mek.bookshelf.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.dto.ItemUpdateRequest;

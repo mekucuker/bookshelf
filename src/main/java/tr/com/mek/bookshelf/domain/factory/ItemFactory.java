@@ -1,8 +1,8 @@
 package tr.com.mek.bookshelf.domain.factory;
 
-import tr.com.mek.bookshelf.domain.model.item.Book;
-import tr.com.mek.bookshelf.domain.model.item.Item;
-import tr.com.mek.bookshelf.domain.model.item.Magazine;
+import tr.com.mek.bookshelf.domain.model.Book;
+import tr.com.mek.bookshelf.domain.model.Item;
+import tr.com.mek.bookshelf.domain.model.Magazine;
 
 public class ItemFactory {
 

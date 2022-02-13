@@ -1,4 +1,4 @@
-package tr.com.mek.bookshelf.domain.model.person;
+package tr.com.mek.bookshelf.domain.model.vo;
 
 import lombok.Data;
 

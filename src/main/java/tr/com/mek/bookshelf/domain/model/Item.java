@@ -1,10 +1,10 @@
-package tr.com.mek.bookshelf.domain.model.item;
+package tr.com.mek.bookshelf.domain.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import tr.com.mek.bookshelf.domain.model.item.value.PublicationYear;
-import tr.com.mek.bookshelf.domain.model.person.Person;
+import tr.com.mek.bookshelf.domain.model.vo.Person;
+import tr.com.mek.bookshelf.domain.model.vo.PublicationYear;
 import tr.com.mek.bookshelf.exception.ModelArgumentNotValidException;
 
 import java.time.LocalDate;

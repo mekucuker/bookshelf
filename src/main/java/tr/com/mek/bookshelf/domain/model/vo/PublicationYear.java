@@ -1,4 +1,4 @@
-package tr.com.mek.bookshelf.domain.model.item.value;
+package tr.com.mek.bookshelf.domain.model.vo;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
