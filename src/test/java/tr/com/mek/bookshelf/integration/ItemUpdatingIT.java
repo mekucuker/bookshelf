@@ -6,16 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import tr.com.mek.bookshelf.domain.factory.ItemType;
 import tr.com.mek.bookshelf.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.dto.ItemUpdateRequest;
 import tr.com.mek.bookshelf.exception.ErrorCode;
-import tr.com.mek.bookshelf.integration.initializer.DatabaseInitializer;
 import tr.com.mek.bookshelf.integration.object.TestItemRequest;
 import tr.com.mek.bookshelf.repository.ItemRepository;
 
@@ -26,9 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static tr.com.mek.bookshelf.integration.object.TestItemRequest.getTestItemCreationRequest;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@ContextConfiguration(initializers = DatabaseInitializer.class)
+@IntegrationTest
 @DisplayName("Item Updating Integration Test Cases")
 public class ItemUpdatingIT {
 
