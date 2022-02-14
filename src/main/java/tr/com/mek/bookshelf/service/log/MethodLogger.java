@@ -6,7 +6,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -15,28 +14,12 @@ import org.springframework.stereotype.Component;
 public class MethodLogger {
 
     /**
-     * Pointcut definition for all RestController methods.
-     */
-    @Pointcut("within(@org.springframework.web.bind.annotation.RestController *)")
-    public void cutRestControllerMethods() {
-
-    }
-
-    /**
-     * Pointcut definition for all methods under the root (bookshelf) package.
-     */
-    @Pointcut("execution(* tr.com.mek.bookshelf..*(..))")
-    public void cutAllMethods() {
-
-    }
-
-    /**
      * Creates log for all called REST endpoints.
      * Log level is INFO for this aspect.
      *
      * @param joinPoint JoinPoint
      */
-    @Before("cutRestControllerMethods()")
+    @Before("within(@org.springframework.web.bind.annotation.RestController *)")
     public void logRestControllerMethodCall(JoinPoint joinPoint) {
         String methodAndClassNameCombination = getMethodAndClassNameCombination(joinPoint);
         log.info("Called REST method is " + methodAndClassNameCombination);
@@ -48,7 +31,7 @@ public class MethodLogger {
      *
      * @param joinPoint ProceedingJoinPoint
      */
-    @Around("cutAllMethods()")
+    @Around("execution(* tr.com.mek.bookshelf..*(..))")
     public Object logMethodCallAndReturn(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodAndClassNameCombination = getMethodAndClassNameCombination(joinPoint);
         log.debug("Called method is " + methodAndClassNameCombination);

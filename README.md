@@ -29,7 +29,7 @@ This project was implemented by following the principles of OOP, clean layered a
 * Docker
 * Docker-compose
 
-The project can be run by using 'docker-compose up' command after Docker image of the project was built. However, the yml configuration has been split into two parts such that docker-compose.bookshelf.yml and docker-compose.mongo.yml to provide the ability to run the project on the IDE. They can be run together or separately by giving the file names with '-f' option. There is also Mongo Express configuration inside the docker-compose-mongo.yml file which is a MongoDB tool provides an admin interface for the database.
+The project can be run by using 'docker-compose up' command after Docker image of the project was built. However, the yml configuration has been split into two parts such that docker-compose.bookshelf.yml and docker-compose.mongo.yml to provide the ability to run the project on the IDE. They can be run together or separately by giving the file names with '-f' option. There is also Mongo Express configuration inside the docker-compose.mongo.yml file which is a MongoDB tool provides an admin interface for the database.
 
 Context path of the project is '/bookshelf/api/v1' and Swagger UI can be reached by adding '/swagger' to the context path.
 
