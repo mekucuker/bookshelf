@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static tr.com.mek.bookshelf.domain.object.TestPerson.getTestPerson;
 
 @DisplayName("Item Borrowing Test Cases")
-public class ItemBorrowingTest {
+class ItemBorrowingTest {
 
     private final String testItemName = "Test Item Name";
 

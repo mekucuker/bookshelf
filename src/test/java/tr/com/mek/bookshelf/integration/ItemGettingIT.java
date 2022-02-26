@@ -23,7 +23,7 @@ import static tr.com.mek.bookshelf.integration.object.TestItem.getTestBookItem;
 
 @IntegrationTest
 @DisplayName("Item Getting Integration Test Cases")
-public class ItemGettingIT {
+class ItemGettingIT {
 
     @Autowired
     private MockMvc mockMvc;

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Equals and Hash Code Test Cases")
-public class EqualsAndHashCodeTest {
+class EqualsAndHashCodeTest {
 
     private final String modelPackage = "tr.com.mek.bookshelf.domain.model";
 

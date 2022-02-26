@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Publication Year Validation Test Cases")
-public class PublicationYearValidationTest {
+class PublicationYearValidationTest {
 
     private final int testValidPublicationYear = 2020;
     private int testNextYear;

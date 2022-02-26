@@ -17,7 +17,7 @@ import tr.com.mek.bookshelf.exception.ItemNotFoundException;
 import tr.com.mek.bookshelf.exception.ModelArgumentNotValidException;
 import tr.com.mek.bookshelf.service.CrudOperation;
 import tr.com.mek.bookshelf.service.LoanOperation;
-import tr.com.mek.bookshelf.service.OperationType;
+import tr.com.mek.bookshelf.service.LoanOperationType;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -111,7 +111,7 @@ public class ItemRestController {
             @ApiResponse(responseCode = "200"),
             @ApiResponse(responseCode = "404", description = "ItemNotFoundException",
                     content = {@Content(schema = @Schema(implementation = ErrorResponse.class)) }) })
-    public Item undoLoanOperation(@PathVariable("id") String itemId, @RequestParam OperationType type) throws ItemNotFoundException {
+    public Item undoLoanOperation(@PathVariable("id") String itemId, @RequestParam LoanOperationType type) throws ItemNotFoundException {
         return loanOperations.get(type.toString()).undoOperation(itemId);
     }
 }

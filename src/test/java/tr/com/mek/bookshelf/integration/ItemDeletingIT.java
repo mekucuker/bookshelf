@@ -21,7 +21,7 @@ import static tr.com.mek.bookshelf.integration.object.TestItemRequest.getTestIte
 
 @IntegrationTest
 @DisplayName("Item Deleting Integration Test Cases")
-public class ItemDeletingIT {
+class ItemDeletingIT {
 
     @Autowired
     private MockMvc mockMvc;

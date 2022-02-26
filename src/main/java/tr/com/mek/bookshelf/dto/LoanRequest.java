@@ -3,7 +3,7 @@ package tr.com.mek.bookshelf.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import tr.com.mek.bookshelf.service.OperationType;
+import tr.com.mek.bookshelf.service.LoanOperationType;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,8 +14,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class LoanRequest {
 
-    @NotNull(message = "Operation type may not be null.")
-    private OperationType type;
+    @NotNull(message = "Loan operation type may not be null.")
+    private LoanOperationType type;
 
     @NotBlank(message = "Name may not be blank.")
     @Size(min = 3, max = 50, message = "Name size may be between 3 and 50 characters.")

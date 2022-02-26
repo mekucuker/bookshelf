@@ -24,7 +24,7 @@ import static tr.com.mek.bookshelf.integration.object.TestItemRequest.getTestIte
 
 @IntegrationTest
 @DisplayName("Item Updating Integration Test Cases")
-public class ItemUpdatingIT {
+class ItemUpdatingIT {
 
     @Autowired
     private MockMvc mockMvc;

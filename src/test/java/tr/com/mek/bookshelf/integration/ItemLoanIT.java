@@ -17,7 +17,7 @@ import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.integration.object.TestItemRequest;
 import tr.com.mek.bookshelf.integration.object.TestLoanRequest;
 import tr.com.mek.bookshelf.repository.ItemRepository;
-import tr.com.mek.bookshelf.service.OperationType;
+import tr.com.mek.bookshelf.service.LoanOperationType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,7 +28,7 @@ import static tr.com.mek.bookshelf.integration.object.TestItem.getTestBookItem;
 
 @IntegrationTest
 @DisplayName("Item Loan Integration Test Cases")
-public class ItemLoanIT {
+class ItemLoanIT {
 
     @Autowired
     private MockMvc mockMvc;
@@ -95,7 +95,7 @@ public class ItemLoanIT {
     void lendItemSuccessfully() throws Exception {
         // given
         LoanRequest request = TestLoanRequest.getTestLoanRequest();
-        request.setType(OperationType.LEND);
+        request.setType(LoanOperationType.LEND);
 
         // when
         ResultActions result = mockMvc.perform(put("/items/{id}/loan", testId)
@@ -116,7 +116,7 @@ public class ItemLoanIT {
     @DisplayName("Undo Borrowing Operation Successfully Integration Test")
     void undoBorrowingOperationSuccessfully() throws Exception {
         // given
-        OperationType type = OperationType.BORROW;
+        LoanOperationType type = LoanOperationType.BORROW;
 
         // when
         ResultActions result = mockMvc.perform(put("/items/{id}/loan/undo", testId)
@@ -133,7 +133,7 @@ public class ItemLoanIT {
     @DisplayName("Undo Lending Operation Successfully Integration Test")
     void undoLendingOperationSuccessfully() throws Exception {
         // given
-        OperationType type = OperationType.LEND;
+        LoanOperationType type = LoanOperationType.LEND;
 
         // when
         ResultActions result = mockMvc.perform(put("/items/{id}/loan/undo", testId)
@@ -151,8 +151,8 @@ public class ItemLoanIT {
      */
 
     @Test
-    @DisplayName("Throwing Exception If Operation Type is Null")
-    void throwExceptionIfOperationTypeIsNull() throws Exception {
+    @DisplayName("Throwing Exception If Loan Operation Type is Null")
+    void throwExceptionIfLoanOperationTypeIsNull() throws Exception {
         // given
         LoanRequest request = TestLoanRequest.getTestLoanRequest();
         request.setType(null);
@@ -166,7 +166,7 @@ public class ItemLoanIT {
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
         assertTrue(response.contains(argumentNotValidCode));
-        assertTrue(response.contains("Operation type may not be null."));
+        assertTrue(response.contains("Loan operation type may not be null."));
     }
 
     @Test

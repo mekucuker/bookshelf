@@ -1,11 +1,11 @@
 package tr.com.mek.bookshelf.integration.object;
 
 import tr.com.mek.bookshelf.dto.LoanRequest;
-import tr.com.mek.bookshelf.service.OperationType;
+import tr.com.mek.bookshelf.service.LoanOperationType;
 
 public class TestLoanRequest {
 
-    static final OperationType type = OperationType.BORROW;
+    static final LoanOperationType type = LoanOperationType.BORROW;
     static final String name = "Test Person Name";
     static final String mobilePhone = "01234567890";
     static final String city = "Test City";
