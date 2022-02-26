@@ -4,7 +4,7 @@ This is a sample backend project written in Java and Spring Boot to implement so
 
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mekucuker_bookshelf&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=mekucuker_bookshelf)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mekucuker_bookshelf&metric=security_rating)](https://sonarcloud.io/dashboard?id=mekucuker_bookshelf)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=mekucuker_bookshelf&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=mekucuker_bookshelf)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=mekucuker_bookshelf&metric=coverage)](https://sonarcloud.io/dashboard?id=mekucuker_bookshelf)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mekucuker_bookshelf&metric=code_smells)](https://sonarcloud.io/dashboard?id=mekucuker_bookshelf)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=mekucuker_bookshelf&metric=sqale_index)](https://sonarcloud.io/dashboard?id=mekucuker_bookshelf)
 
