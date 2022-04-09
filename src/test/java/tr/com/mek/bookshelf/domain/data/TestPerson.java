@@ -1,4 +1,4 @@
-package tr.com.mek.bookshelf.domain.object;
+package tr.com.mek.bookshelf.domain.data;
 
 import tr.com.mek.bookshelf.domain.model.vo.Person;
 

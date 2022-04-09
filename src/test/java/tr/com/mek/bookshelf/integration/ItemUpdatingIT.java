@@ -11,8 +11,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import tr.com.mek.bookshelf.domain.factory.ItemType;
 import tr.com.mek.bookshelf.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.dto.ItemUpdateRequest;
-import tr.com.mek.bookshelf.exception.ErrorCode;
-import tr.com.mek.bookshelf.integration.object.TestItemRequest;
+import tr.com.mek.bookshelf.integration.data.TestItemRequest;
 import tr.com.mek.bookshelf.repository.ItemRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static tr.com.mek.bookshelf.integration.object.TestItemRequest.getTestItemCreationRequest;
+import static tr.com.mek.bookshelf.integration.data.IntegrationTestData.*;
+import static tr.com.mek.bookshelf.integration.data.TestItemRequest.getTestItemCreationRequest;
 
 @IntegrationTest
 @DisplayName("Item Updating Integration Test Cases")
@@ -35,11 +35,6 @@ class ItemUpdatingIT {
     @Autowired
     private ItemRepository itemRepository;
 
-    private static final String testNameOneChar = "_";
-    private static final String testNameFiftyChars = "testNameWith50Characters_testNameWith50Characters_";
-    private static final String testNameFiftyOneChars = testNameFiftyChars + testNameOneChar;
-    private static final String testNameHundredAndOneChars = testNameFiftyChars + testNameFiftyChars + testNameOneChar;
-    private static final String argumentNotValidCode = String.valueOf(ErrorCode.ARGUMENT_NOT_VALID.getCode());
     private String testBookId;
     private String testMagazineId;
 
@@ -119,7 +114,7 @@ class ItemUpdatingIT {
     void throwExceptionIfAuthorNameSizeIsTooLong() throws Exception {
         // given
         ItemUpdateRequest request = TestItemRequest.getTestItemUpdateRequest();
-        request.setAuthor(testNameFiftyOneChars); // author name with fifty one characters
+        request.setAuthor(TEST_NAME_WITH_51_CHARACTERS); // author name with fifty one characters
 
         // when
         ResultActions result = mockMvc.perform(put("/items/" + testBookId)
@@ -129,7 +124,7 @@ class ItemUpdatingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(response.contains("Author name size may be up to 50 characters."));
     }
 
@@ -138,7 +133,7 @@ class ItemUpdatingIT {
     void throwExceptionIfPublisherNameSizeIsTooLong() throws Exception {
         // given
         ItemUpdateRequest request = TestItemRequest.getTestItemUpdateRequest();
-        request.setPublisher(testNameHundredAndOneChars); // publisher name with hundred and one characters
+        request.setPublisher(TEST_NAME_WITH_101_CHARACTERS); // publisher name with hundred and one characters
 
         // when
         ResultActions result = mockMvc.perform(put("/items/" + testBookId)
@@ -148,7 +143,7 @@ class ItemUpdatingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(response.contains("Publisher name size may be up to 100 characters."));
     }
 
@@ -167,7 +162,7 @@ class ItemUpdatingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(response.contains("Publication year must not be earlier" +
                 " than the year of the first published book which is 868."));
     }
@@ -187,7 +182,7 @@ class ItemUpdatingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(response.contains("Issue value may be positive."));
     }
 }

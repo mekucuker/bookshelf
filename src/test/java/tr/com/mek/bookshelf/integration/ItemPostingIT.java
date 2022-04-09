@@ -12,14 +12,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import tr.com.mek.bookshelf.domain.model.Item;
 import tr.com.mek.bookshelf.dto.ItemCreationRequest;
-import tr.com.mek.bookshelf.exception.ErrorCode;
-import tr.com.mek.bookshelf.integration.object.TestItemRequest;
+import tr.com.mek.bookshelf.integration.data.TestItemRequest;
 import tr.com.mek.bookshelf.repository.ItemRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static tr.com.mek.bookshelf.integration.object.TestItem.getTestBookItem;
+import static tr.com.mek.bookshelf.integration.data.IntegrationTestData.*;
+import static tr.com.mek.bookshelf.integration.data.TestItem.getTestBookItem;
 
 @IntegrationTest
 @DisplayName("Item Posting Integration Test Cases")
@@ -34,11 +34,6 @@ class ItemPostingIT {
     @Autowired
     private ItemRepository itemRepository;
 
-    private static final String testNameOneChar = "_";
-    private static final String testNameFiftyChars = "testNameWith50Characters_testNameWith50Characters_";
-    private static final String testNameFiftyOneChars = testNameFiftyChars + testNameOneChar;
-    private static final String testNameHundredAndOneChars = testNameFiftyChars + testNameFiftyChars + testNameOneChar;
-    private static final String argumentNotValidCode = String.valueOf(ErrorCode.ARGUMENT_NOT_VALID.getCode());
     private Item testItem;
 
     @BeforeEach
@@ -87,7 +82,7 @@ class ItemPostingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(response.contains("Item type may not be null."));
     }
 
@@ -106,12 +101,12 @@ class ItemPostingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(response.contains("Name may not be blank."));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {testNameOneChar, testNameFiftyOneChars}) // names with one and fifty one characters
+    @ValueSource(strings = {TEST_NAME_WITH_1_CHARACTER, TEST_NAME_WITH_51_CHARACTERS}) // names with one and fifty one characters
     @DisplayName("Throwing Exception While Creating Object If Name Size is Not Appropriate")
     void throwExceptionIfNameSizeIsTooShortOrTooLong(String name) throws Exception {
         // given
@@ -126,7 +121,7 @@ class ItemPostingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(result.andReturn().getResponse().getContentAsString().contains("Name size may be between 3 and 50 characters."));
     }
 
@@ -135,7 +130,7 @@ class ItemPostingIT {
     void throwExceptionIfAuthorNameSizeIsTooLong() throws Exception {
         // given
         ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
-        request.setAuthor(testNameFiftyOneChars); // author name with fifty one characters
+        request.setAuthor(TEST_NAME_WITH_51_CHARACTERS); // author name with fifty one characters
 
         // when
         ResultActions result = mockMvc.perform(post("/items")
@@ -145,7 +140,7 @@ class ItemPostingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(result.andReturn().getResponse().getContentAsString().contains("Author name size may be up to 50 characters."));
     }
 
@@ -154,7 +149,7 @@ class ItemPostingIT {
     void throwExceptionIfPublisherNameSizeIsTooLong() throws Exception {
         // given
         ItemCreationRequest request = TestItemRequest.getTestItemCreationRequest();
-        request.setPublisher(testNameHundredAndOneChars); // publisher name with hundred and one characters
+        request.setPublisher(TEST_NAME_WITH_101_CHARACTERS); // publisher name with hundred and one characters
 
         // when
         ResultActions result = mockMvc.perform(post("/items")
@@ -164,7 +159,7 @@ class ItemPostingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(result.andReturn().getResponse().getContentAsString().contains("Publisher name size may be up to 100 characters."));
     }
 
@@ -183,7 +178,7 @@ class ItemPostingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(result.andReturn().getResponse().getContentAsString().contains("Publication year must not be earlier" +
                 " than the year of the first published book which is 868."));
     }
@@ -203,7 +198,7 @@ class ItemPostingIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(result.andReturn().getResponse().getContentAsString().contains("Issue value may be positive."));
     }
 }

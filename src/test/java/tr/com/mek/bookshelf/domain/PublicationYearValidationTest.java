@@ -12,11 +12,11 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static tr.com.mek.bookshelf.domain.data.DomainTestData.TEST_VALID_PUBLICATION_YEAR;
 
 @DisplayName("Publication Year Validation Test Cases")
 class PublicationYearValidationTest {
 
-    private final int testValidPublicationYear = 2020;
     private int testNextYear;
 
     @BeforeEach
@@ -28,10 +28,10 @@ class PublicationYearValidationTest {
     @DisplayName("Creating A Valid Publication Year Successfully")
     void createValidPublicationYearSuccessfully() throws Exception {
         // when
-        PublicationYear publicationYear = PublicationYear.of(testValidPublicationYear);
+        PublicationYear publicationYear = PublicationYear.of(TEST_VALID_PUBLICATION_YEAR);
 
         // then
-        assertEquals(testValidPublicationYear, publicationYear.getValue());
+        assertEquals(TEST_VALID_PUBLICATION_YEAR, publicationYear.getValue());
     }
 
     /*

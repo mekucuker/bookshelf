@@ -1,4 +1,4 @@
-package tr.com.mek.bookshelf.integration.object;
+package tr.com.mek.bookshelf.integration.data;
 
 import tr.com.mek.bookshelf.domain.factory.ItemType;
 import tr.com.mek.bookshelf.dto.ItemCreationRequest;

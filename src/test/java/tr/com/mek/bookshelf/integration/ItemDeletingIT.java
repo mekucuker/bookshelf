@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import tr.com.mek.bookshelf.dto.ItemCreationRequest;
-import tr.com.mek.bookshelf.exception.ErrorCode;
 import tr.com.mek.bookshelf.repository.ItemRepository;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,7 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static tr.com.mek.bookshelf.integration.object.TestItemRequest.getTestItemCreationRequest;
+import static tr.com.mek.bookshelf.integration.data.IntegrationTestData.*;
+import static tr.com.mek.bookshelf.integration.data.TestItemRequest.getTestItemCreationRequest;
 
 @IntegrationTest
 @DisplayName("Item Deleting Integration Test Cases")
@@ -32,10 +32,7 @@ class ItemDeletingIT {
     @Autowired
     private ItemRepository itemRepository;
 
-    private static final String itemNotFoundCode = String.valueOf(ErrorCode.ITEM_NOT_FOUND.getCode());
-    private static final String itemNotFoundMessage = String.valueOf(ErrorCode.ITEM_NOT_FOUND.getDefaultMessage());
     private String testId;
-    private final String testWrongId = "wrongItemId";
 
     @BeforeEach
     void init() throws Exception {
@@ -69,13 +66,13 @@ class ItemDeletingIT {
     @DisplayName("Throwing Exception While Deleting Object If There is No Item With That Id")
     void throwExceptionIfItemNotFound() throws Exception {
         // when
-        ResultActions result = mockMvc.perform(delete("/items/{id}", testWrongId)
+        ResultActions result = mockMvc.perform(delete("/items/{id}", TEST_WRONG_ID)
                 .contentType("application/json"));
 
         // then
         result.andExpect(status().isNotFound());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(itemNotFoundCode));
-        assertTrue(response.contains(itemNotFoundMessage));
+        assertTrue(response.contains(ITEM_NOT_FOUND_CODE));
+        assertTrue(response.contains(ITEM_NOT_FOUND_MESSAGE));
     }
 }

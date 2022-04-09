@@ -15,26 +15,25 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static tr.com.mek.bookshelf.domain.object.TestPerson.getTestPerson;
+import static tr.com.mek.bookshelf.domain.data.DomainTestData.TEST_ITEM_NAME;
+import static tr.com.mek.bookshelf.domain.data.TestPerson.getTestPerson;
 
 @DisplayName("Item Borrowing Test Cases")
 class ItemBorrowingTest {
-
-    private final String testItemName = "Test Item Name";
 
     @ParameterizedTest
     @EnumSource(ItemType.class)
     @DisplayName("Borrowing An Item From The Lender Successfully")
     void borrowItemFromLenderSuccessfully(ItemType itemType) throws Exception {
         // given
-        Item item = ItemFactory.create(itemType, testItemName);
+        Item item = ItemFactory.create(itemType, TEST_ITEM_NAME);
         Person person = getTestPerson();
 
         // when
         item.borrow(person);
 
         // then
-        assertEquals(testItemName, item.getName());
+        assertEquals(TEST_ITEM_NAME, item.getName());
         assertEquals(person.getName(), item.getPerson().getName());
         assertEquals(person.getMobilePhone(), item.getPerson().getMobilePhone());
         assertEquals(person.getCity(), item.getPerson().getCity());
@@ -48,7 +47,7 @@ class ItemBorrowingTest {
     @DisplayName("Undo Borrowing Operation of An Item Successfully")
     void undoBorrowingOfItemSuccessfully(ItemType itemType) throws Exception {
         // given
-        Item item = ItemFactory.create(itemType, testItemName);
+        Item item = ItemFactory.create(itemType, TEST_ITEM_NAME);
         Person person = getTestPerson();
         item.borrow(person);
 
@@ -69,7 +68,7 @@ class ItemBorrowingTest {
     @DisplayName("Throwing Exception If The Lender is Null While Borrowing An Item")
     void throwExceptionIfLenderIsNull(ItemType itemType) {
         // given
-        Item item = ItemFactory.create(itemType, testItemName);
+        Item item = ItemFactory.create(itemType, TEST_ITEM_NAME);
 
         // when
         BookshelfException thrown = assertThrows(

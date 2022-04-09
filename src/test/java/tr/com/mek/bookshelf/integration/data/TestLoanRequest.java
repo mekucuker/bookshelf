@@ -1,4 +1,4 @@
-package tr.com.mek.bookshelf.integration.object;
+package tr.com.mek.bookshelf.integration.data;
 
 import tr.com.mek.bookshelf.dto.LoanRequest;
 import tr.com.mek.bookshelf.service.LoanOperationType;

@@ -13,9 +13,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import tr.com.mek.bookshelf.domain.model.Item;
 import tr.com.mek.bookshelf.dto.ItemCreationRequest;
 import tr.com.mek.bookshelf.dto.LoanRequest;
-import tr.com.mek.bookshelf.exception.ErrorCode;
-import tr.com.mek.bookshelf.integration.object.TestItemRequest;
-import tr.com.mek.bookshelf.integration.object.TestLoanRequest;
+import tr.com.mek.bookshelf.integration.data.TestItemRequest;
+import tr.com.mek.bookshelf.integration.data.TestLoanRequest;
 import tr.com.mek.bookshelf.repository.ItemRepository;
 import tr.com.mek.bookshelf.service.LoanOperationType;
 
@@ -24,7 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static tr.com.mek.bookshelf.integration.object.TestItem.getTestBookItem;
+import static tr.com.mek.bookshelf.integration.data.IntegrationTestData.*;
+import static tr.com.mek.bookshelf.integration.data.TestItem.getTestBookItem;
 
 @IntegrationTest
 @DisplayName("Item Loan Integration Test Cases")
@@ -39,14 +39,6 @@ class ItemLoanIT {
     @Autowired
     private ItemRepository itemRepository;
 
-    private static final String testNameOneChar = "_";
-    private static final String testNameFiftyChars = "testNameWith50Characters_testNameWith50Characters_";
-    private static final String testNameFiftyOneChars = testNameFiftyChars + testNameOneChar;
-    private static final String testPhoneNumberNineChars = "012345678";
-    private static final String testPhoneNumberTwelveChars = "012345678901";
-    private static final String testCityNameTwoChars = "__";
-    private static final String testCityNameSixteenChars = "_testCityWith16_";
-    private static final String argumentNotValidCode = String.valueOf(ErrorCode.ARGUMENT_NOT_VALID.getCode());
     private String testId;
     private Item testItem;
 
@@ -165,7 +157,7 @@ class ItemLoanIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(response.contains("Loan operation type may not be null."));
     }
 
@@ -184,12 +176,12 @@ class ItemLoanIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(response.contains("Name may not be blank."));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {testNameOneChar, testNameFiftyOneChars}) // names with one and fifty one characters
+    @ValueSource(strings = {TEST_NAME_WITH_1_CHARACTER, TEST_NAME_WITH_51_CHARACTERS}) // names with one and fifty one characters
     @DisplayName("Throwing Exception If Person Name Size is Not Appropriate")
     void throwExceptionIfNameSizeIsTooShortOrTooLong(String name) throws Exception {
         // given
@@ -204,12 +196,12 @@ class ItemLoanIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(result.andReturn().getResponse().getContentAsString().contains("Name size may be between 3 and 50 characters."));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {testPhoneNumberNineChars, testPhoneNumberTwelveChars}) // phone numbers with nine and twelve characters
+    @ValueSource(strings = {TEST_PHONE_NUMBER_WITH_9_CHARACTERS, TEST_PHONE_NUMBER_WITH_12_CHARACTERS}) // phone numbers with nine and twelve characters
     @DisplayName("Throwing Exception If Mobile Phone Number Size is Not Appropriate")
     void throwExceptionIfMobilePhoneNumberSizeIsTooShortOrTooLong(String mobilePhone) throws Exception {
         // given
@@ -224,12 +216,12 @@ class ItemLoanIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(result.andReturn().getResponse().getContentAsString().contains("Mobile phone number size may be 10 or 11 characters."));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {testCityNameTwoChars, testCityNameSixteenChars}) // city names with two and sixteen characters
+    @ValueSource(strings = {TEST_CITY_NAME_WITH_2_CHARACTERS, TEST_CITY_NAME_WITH_16_CHARACTERS}) // city names with two and sixteen characters
     @DisplayName("Throwing Exception If City Name Size is Not Appropriate")
     void throwExceptionIfCityNameSizeIsTooShortOrTooLong(String city) throws Exception {
         // given
@@ -244,7 +236,7 @@ class ItemLoanIT {
         // then
         result.andExpect(status().isBadRequest());
         String response = result.andReturn().getResponse().getContentAsString();
-        assertTrue(response.contains(argumentNotValidCode));
+        assertTrue(response.contains(ARGUMENT_NOT_VALID_CODE));
         assertTrue(result.andReturn().getResponse().getContentAsString().contains("City name size may be between 3 and 15 characters."));
     }
 }
