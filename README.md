@@ -1,6 +1,6 @@
 # Bookshelf Backend Application
 
-This is a sample backend project written in Java and Spring Boot to implement some operations on a Bookshelf.
+This is a sample backend project developed in Java and Spring Boot to implement some operations on a Bookshelf.
 
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mekucuker_bookshelf&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=mekucuker_bookshelf)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mekucuker_bookshelf&metric=security_rating)](https://sonarcloud.io/dashboard?id=mekucuker_bookshelf)
